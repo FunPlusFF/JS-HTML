@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+    <form name="main" >
+<b>Макасимальное значение </b><input name="one" value="10"> <br>
+<b>Минимальное значение </b><input name="two" value="1"><br>
+<b>Количество чисел </b><input name="tree" value="1"><br>
+<b>Сумму чисел </b><input name ="outSum" readonly = true    ><br>
+<button type="button" id ="" onClick= "SumNumber()" >Вычислить</button>
+<button type="button" id ="" onClick= "outSumEl()">Сравнить</button>
+<button id ="" onClick= "Claer()"> Очистить текстовое поле</button>
+</form>
+
+<script>
+    function Claer() {
+      
+        document.main.elements.outSum.value = "";
+    }
+    var arrayDo = new Array;
+   var Sum = 0;
+    function SumNumber() {
+        Claer();
+        // let mainForm = document.forms.main;
+        // let num = mainForm.elements.one;
+        // alert(num.value);
+    var form = document.forms.main; 
+    var maxE = form.elements.one;
+    var minE = form.elements.two; 
+    var countN = form.elements.tree;
+    var SumNum=0;
+    if (countN.value == 0) {
+        countN.value = 1;
+    }
+    for (let i = 0; i < countN.value; i++) {
+         arrayDo[i] = parseInt(Math.random() *  (maxE.value - minE.value) + minE.value); //запись элементов в массив
+        SumNum += arrayDo[i];
+    }
+    alert(SumNum); //Вывод результата  
+    document.main.elements.outSum.value += parseInt(SumNum);
+    // localStorage.setItem('SumNum', parseInt(SumNum.value));
+    }
+
+   function outSumEl() {
+       document.main.elements.outSum.value = "";
+       for (let i = 0; i < arrayDo.length; i++) {
+           Sum += parseInt(arrayDo[i]);
+           if(i == 0 ) document.main.elements.outSum.value += arrayDo[i];
+           else
+         document.main.elements.outSum.value += "+" +  arrayDo[i];
+           
+       }
+    //    document.main.elements.outSum.value += parseInt(localStorage.getItem('SumNum'));
+     document.main.elements.outSum.value += "="  + Sum;
+   }
+    
+</script>
+</body>
+</html>

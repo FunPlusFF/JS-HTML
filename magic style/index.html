@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приктическая работа</title>
+
+    <style>
+        hr {
+            border: none;
+            /* Убираем границу */
+            background-color: red;
+            /* Цвет линии */
+            color: red;
+            /* Цвет линии для IE6-7 */
+            height: 5px;
+            /* Толщина линии */
+        }
+
+        h1:hover {
+            text-decoration: none;
+            /* Убираем подчеркивание */
+            color: blue;
+            /* Цвет ссылки при наведении на нее курсора мыши */
+            /* Цвет фона */
+        }
+    </style>
+</head>
+
+<body>
+    <form id="f1">
+        <h1 id="lab"> Обращение к объектам документа и браузера</h1>
+        <!-- <hr name="line">     -->
+        <hr id="lin" color="blue">
+        </hr>
+
+        <figure>
+            <img src="1.jpg" width=300 height=400 id="i1">
+            <img src="krasivye-kartinki-dikoj-prirody-27.jpg" height=400 width=300 id="i2">
+            <img src="image1.jpg" width=300 height=400 id="i3">
+        </figure>
+        <h2>
+            Форма с кнопками
+        </h2>
+        <button onclick=dataNow()>Какое сегодня число</button>
+        <button onclick=new_wnd()>Новое окно</button>
+        <button onclick=outHTMLcode()>Элементы страницы</button>
+        <button onclick=changeColor()>Линия</button>
+        <button onclick=borderLine()>Рисунок</button>
+    </form>
+</body>
+<script>
+    let cr = false;
+    function changeColor() {
+        // document.getElementById("lin").style.color = randCol();
+        document.getElementById("lin").style.backgroundColor = randCol();
+    }
+    function randCol() {
+        col = "#" + Math.floor(Math.random() * 255).toString(16) + Math.floor(Math.random() * 255).toString(16) + Math.floor(Math.random() * 255).toString(16)
+        return col;
+    }
+
+    function borderLine() {
+        if (cr == false) {
+            document.getElementById("i1").style.border = "3px black solid";
+            document.getElementById("i2").style.border = "3px black solid";
+            document.getElementById("i3").style.border = "3px black solid";
+            cr = true;
+        }
+        else {
+            document.getElementById("i1").style.border = "none";
+            document.getElementById("i2").style.border = "none";
+            document.getElementById("i3").style.border = "none";
+            cr = false;
+        }
+    }
+    function dataNow() {
+
+        let dateStart = new Date(2020, 8, 1), dateEnd = new Date(2021, 7, 1), dateNow = new Date();
+        let diffB = Math.ceil((dateNow - dateStart) / 1000 / 60 / 60 / 24), diffE = Math.ceil((dateEnd - dateNow) / 1000 / 60 / 60 / 24);
+        let days = new Array('воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота');
+
+        alert("Сегодня " + (new Intl.DateTimeFormat("ru", { year: "numeric", month: "long", day: "numeric" }).format(dateNow)) + ", " + days[dateNow.getDay()] +
+            "\n" + "Прошло с начала учебного года " + diffB + "\n" + "Осталось до конца учебного года " + diffE);
+
+
+    }
+    function outHTMLcode() {
+        // var doc = document || window.document;
+        // alert(doc.body.innerHTML);
+        // alert(document.getElementById("f1").innerHTML);
+        var ls = "";
+        var id;
+        for (var i = 0; i < document.all.length; i++) {
+            ls += i + " tagName = " + document.all[i].tagName +
+                " id = " + document.all[i].id + "\n";
+        }
+        alert(ls);
+    }
+
+    function new_wnd() {
+        let newWnd = window.open("newWnd", "New window", "width = 500", "height = 500");
+        newWnd = newWnd.document.write("<form>" +
+            "<h1 style = 'color:red; '> Желаю счастья и удачи! </h1> " +
+            "<img src='image1.jpg' width='400px' height='300px' >" +
+            "<button>Назад</button>" +
+            "</form>"
+        );
+    }
+
+</script>
+
+</html>

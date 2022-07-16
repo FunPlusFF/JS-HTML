@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Задание 7</title>
+</head>
+
+<body>
+    <h1>Обработка формы</h1>
+    <form >
+        <label for="uName">Введите имя:</label>
+        <input id="uName" type="text" value="">
+        <br>
+        <label>Укажите Ваш пол:</label>
+        <br>
+        <input id="genderM" name="gender" type="radio" value="male">
+        <label for="genderM">Мужчина</label>
+        <input id="genderF" name="gender" type="radio" value="female">
+        <label for="genderF">Женщина</label>
+        <br>
+        <label>Укажите квартал:</label>
+        <br>
+        <select id="quarter" size="4" onchange="choose(this.value)">
+            <option value="0">Первый квартал</option>
+            <option value="1">Второй квартал</option>
+            <option value="2">Третий квартал</option>
+            <option value="3">Четвертый квартал</option>
+        </select>
+        <br><br>
+        <fieldset id="inProfit">
+            <legend>Доход по месяцам:</legend>
+            <label id="month1L" for="month1"></label>
+            <input id="month1" type="text">
+            <br><br>
+            <label id="month2L" for="month2"></label>
+            <input id="month2" type="text">
+            <br><br>
+            <label id="month3L" for="month3"></label>
+            <input id="month3" type="text">
+            <br><br>
+            <button type="button" onClick="sendInProfit()">Отправить</button>
+            <button type="button" onClick="clearInProfit()">Очистить</button>
+        </fieldset>
+        <br>
+        <fieldset id="outProfit">
+        </fieldset>
+    </form>
+
+    <style>
+        #thisMonth {
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var quarter1 = ["Январь", "Февраль", "Март"];
+        var quarter2 = ["Апрель", "Май", "Июнь"];
+        var quarter3 = ["Июль", "Август", "Сентябрь"];
+        var quarter4 = ["Октябрь", "Ноябрь", "Декабрь"];
+        var quarters = [quarter1, quarter2, quarter3, quarter4];
+        var quarter = null;
+
+
+        document.getElementById("inProfit").style.borderColor = "green";
+        document.getElementById("outProfit").style.borderColor = "green";
+
+        function choose(select) {
+            quarterS = select;
+            quarter = Number(select) + 1;
+            for (var i = 0; i < 3; i++) {
+
+
+                document.getElementById("month" + (i + 1) + "L").textContent =
+                    quarters[select][i];
+            }
+        }
+        function clearInProfit() {
+            for (var i = 1; i <= 3; i++) {
+                document.getElementById(("month" + i)).value = null;
+            }
+        }
+
+        function sendInProfit() {
+            var send = "";
+            var genderM = document.getElementById("genderM");
+            var genderF = document.getElementById("genderF");
+
+            if (genderM.checked) {
+                send += "Уважаемый";
+                send = Profit(send);
+            } else if (genderF.checked) {
+                send += "Уважаемая";
+                send = Profit(send);
+            }
+            document.getElementById("outProfit").innerHTML = send;
+        }
+        //}
+        function Profit(send) {
+            send += " " + document.getElementById("uName").value + ".<br>";
+            send += "Ваш доход за " + quarter + "-й квартал:";
+            send += "<table border='1px' cellspacing='0px' cellpadding='5px'>" +
+                "<tr>";
+            for (var i = 1; i <= 3; i++) {
+                send += "<td>" + document.getElementById("month" + i + "L").textContent + "</td>";
+            }
+            send += "<td>Налоги</td><td>Итого</td></tr>";
+            send += "<tr>";
+            var profit = 0;
+            for (var i = 1; i <= 3; i++) {
+                var monthP = Number(document.getElementById("month" + i).value);
+                profit += monthP;
+                send += "<td>" + monthP + "</td>";
+            }
+            var taxes = profit / 100 * 13;
+            var total = profit - taxes;
+            send += "<td>" + taxes.toFixed(2) + "</td>" + "<td>" + total.toFixed(2) + "</td>";
+            send += "</tr>";
+            send += "</table>";
+            send = "<p>" + send + "</p>";
+            return send;
+        }
+    </script>
+</body>
+
+</html>

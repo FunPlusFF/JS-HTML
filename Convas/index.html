@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<!-- <body onload="createImage()"> -->
+<body onload="kruglyashki()"> 
+  <canvas id="canvas" width="560" height="200">
+    <script>
+       
+        function kruglyashki() {
+        var width  = window.innerWidth;
+        var height  = window.innerHeight;
+            
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+            
+        canvas.width = width;
+        canvas.height = height;
+        MaxD1 = 40;
+        MinD1 = 20;
+        MaxD2 = 20;
+        MinD2 = 10;
+        ctx.fillRect(0,0, width, height);
+        ctx.fillStyle = "black";
+
+        for (let i = 0; i < 30; i++) {
+           var Rx0 = Math.random() * width;
+           var Ry0 = height * Math.random();
+            var Rx1 = Rx0 + Math.random() * 10;
+           var Ry1 = Ry0 + Math.random() * 15;
+          //  var a = Math.random() * 1;
+         r = Math.floor(Math.random() * (256)),
+            g = Math.floor(Math.random() * (256)),
+            b = Math.floor(Math.random() * (256)),
+            color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
+
+          var col;
+        //   col = RandColor();
+        //    var radgrad = ctx.createRadialGradient(Rx0, Ry0, Math.random() * (MaxD2 - MinD2) + MinD2, Rx1, Ry1, Math.random() * (MaxD1 - MinD1) + MinD1)
+        //    radgrad.addColorStop(0, col.toString());
+        //      radgrad.addColorStop(0.75, col.toString());
+        //       radgrad.addColorStop(1, col.toString());
+        ctx.beginPath();
+        ctx.arc(Rx0, Ry0, Math.random() * (40 - 20) + 20, 0 , 2 * Math.PI, false);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.closePath();
+        }
+
+          
+        
+        }
+        function createImage() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            canvas.width = 560;
+            canvas.height = 200;
+            r = 255,
+            g = 0,
+            b = 0,
+            color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
+            arcol = new Array("FF0000", "FF8000", "FFFF00", "00FF00", "008FFF", "0000FF", "FF00FF");
+          for (let i = 1; i <= 7; i++) {
+            for (let j = 1; j <= 4; j++) {
+            
+            
+            a = parseInt(255 / (80 / (20 * j))).toString(16);
+            color = '#' + arcol[i - 1]  + a;
+            ctx.fillStyle = color;
+            
+            ctx.fillRect((80 * (i-1) + 20 *(j - 1)) , 0, 20, 200);
+            }
+            
+          }
+      
+        }
+
+    </script>
+</body>
+</html>

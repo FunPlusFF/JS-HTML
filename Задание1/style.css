@@ -1,0 +1,13 @@
+.shess {
+    align-content: center;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    color: yellow;
+    width: 100px;
+    height: 100px;
+    background-color: gainsboro;
+display: inline-block;
+color: green;
+}

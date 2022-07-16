@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пора собирать нологи!)))</title>
+
+</head>
+<body>
+    <style>
+        body{
+            display: block;
+        }
+        .n{
+            border: 1px, black, solid;
+        }
+    </style>
+<form action="" name="nalog" class = "n" >
+    <h1>Пора сдирать с тебя налоги!</h1> 
+    <br><br>
+    <b>Введите ваше имя: </b><input name="one" value="Ваня"> 
+    <br><br>
+    <b>ВЫбирете квартал</b>
+    <select size="4" name="list" onchange="SelectKv(this.value)">
+        <option selected >Квартал 1</option>
+        <option>Квартал 2</option>
+
+        <option>Квартал 3</option>
+        <option>Квартал 4</option>
+
+    </select><br><br><br>
+    <button type="button" onclick = "Selsq()">Выбрать</button>
+    <input type="text" name="Kvart">
+</form>
+<script>
+let selS;
+    function Selsq() {
+      let Fmon = +prompt("Введите ЗП за первый месяц");
+        let Smon = +prompt("Введите ЗП за второй месяц");
+        let Tmon = +prompt("Введите ЗП за третий месяц");
+        let Lmon = +prompt("Введите ЗП за четвертый месяц");   
+        switch (kv) {
+            case "Квартал 1":
+                masKv[0] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 0;
+                break;
+            case "Квартал 2":
+                // selKv = "Квартал 2";
+                masKv[1] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 1;
+                break;
+            case "Квартал 3":
+                // selKv = "Квартал 3";
+                masKv[2] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 2;
+                break;
+            case "Квартал 4":
+                // selKv = "Квартал 4";
+                masKv[3] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 3;
+                break;
+            default:
+                alert("Ошибка");
+                break;
+        }
+        masKv[0] = 100 
+        if (masKv != null & masKv != null & masKv != null & masKv != null){
+            document.forms.nalog.Kvart.value = (masKv[0] + masKv[1] + masKv[2] + masKv[3]) * 0.13;}
+            else{
+            alert(masKv);
+            }
+    }
+    let masKv = new Array[4];
+    function SelectKv(kv) {
+        var selKv = "Ошибка";
+        switch (kv) {
+            case "Квартал 1":
+                // masKv[0] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 0;
+                break;
+            case "Квартал 2":
+                // selKv = "Квартал 2";
+                // masKv[1] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 1;
+                break;
+            case "Квартал 3":
+                // selKv = "Квартал 3";
+                // masKv[2] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 2;
+                break;
+            case "Квартал 4":
+                // selKv = "Квартал 4";
+                // masKv[3] = (Fmon + Smon + Tmon + Lmon) * 0.13
+                selS = 3;
+                break;
+            default:
+                alert("Ошибка");
+                break;
+        }
+        // if(masKv != null & masKv != null & masKv != null & masKv != null)
+        // document.forms.nalog.Kvart.value = (masKv[0] + masKv[1] + masKv[2] + masKv[3] );
+
+
+    }
+</script>   
+</body>
+   
+
+</html>
